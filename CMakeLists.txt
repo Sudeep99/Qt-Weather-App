@@ -8,11 +8,11 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup()
 
-qt_add_executable(appQt-Weather-app
+qt_add_executable(Qt-Weather-app
     main.cpp
 )
 
-qt_add_qml_module(appQt-Weather-app
+qt_add_qml_module(Qt-Weather-app
     URI Qt-Weather-app
     VERSION 1.0
     QML_FILES Main.qml
@@ -21,20 +21,20 @@ qt_add_qml_module(appQt-Weather-app
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(appQt-Weather-app PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appQt-Weather-app
+set_target_properties(Qt-Weather-app PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Qt-Weather-app
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appQt-Weather-app
+target_link_libraries(Qt-Weather-app
     PRIVATE Qt6::Quick
 )
 
 include(GNUInstallDirs)
-install(TARGETS appQt-Weather-app
+install(TARGETS Qt-Weather-app
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
