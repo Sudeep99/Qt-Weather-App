@@ -101,7 +101,7 @@ Window {
                     id: latitudeField
                     width: parent.width * 0.2
                     placeholderText: "Enter latitude"
-                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|[1-8]\d|90)(?:\.\d{1,2})?)?$/ }
+                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|[1-8]\d|90)(?:\.\d{1,2})?)?$/ } // latitude can only be between -90 to 90 with 2 decimal numbers
                     font.family: mainWindow.appFont
                     font.pointSize: 12
                     color: mainWindow.fontColor
@@ -132,7 +132,7 @@ Window {
                     id: longitudeField
                     width: parent.width * 0.2
                     placeholderText: "Enter longitude"
-                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|1[0-7]\d|180)(?:\.\d{1,2})?)?$/ }
+                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|1[0-7]\d|180)(?:\.\d{1,2})?)?$/ } // longitude can only be between -180 to 180 with 2 decimal numbers
                     font.family: mainWindow.appFont
                     font.pointSize: 12
                     color: mainWindow.fontColor
@@ -150,6 +150,53 @@ Window {
                 right: parent.right
             }
             color: mainWindow.backgroundColor
+
+            Text {
+                id: unitsSectionHeading
+                anchors{
+                    left: parent.left
+                    leftMargin: 20
+                }
+                text: qsTr("Units Preference")
+                font.family: mainWindow.appFont
+                font.pointSize: 15
+                color: mainWindow.fontColor
+            }
+
+            Column{
+                id: unitsRadioButton
+                spacing: 10
+
+                anchors{
+                    top: unitsSectionHeading.bottom
+                    topMargin: 10
+                    left: parent.left
+                    leftMargin: 20
+                    right: parent.right
+                }
+
+                RadioButton{
+                    id: standardUnitsRadioButton
+                    text: "Standard (Temperature in Kelvin and Wind speed in meters/sec)"
+                    font.family: mainWindow.appFont
+                    font.pointSize: 12
+                    checked: true //default option
+                }
+
+                RadioButton{
+                    id: metricUnitsRadioButton
+                    text: "Metric (Temperature in Celcius and Wind speed in meters/sec)"
+                    font.family: mainWindow.appFont
+                    font.pointSize: 12
+                }
+
+                RadioButton{
+                    id: imperialUnitsRadioButton
+                    text: "Imperial (Temperature in Fahrenheit  and Wind speed in miles/sec)"
+                    font.family: mainWindow.appFont
+                    font.pointSize: 12
+                }
+            }
         }
 
         Rectangle{
