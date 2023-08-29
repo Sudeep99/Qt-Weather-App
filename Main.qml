@@ -83,7 +83,7 @@ Window {
 
                 anchors{
                     top: locationSectionHeading.bottom
-                    topMargin: 10
+                    topMargin: 20
                     left: parent.left
                     leftMargin: 20
                     right: parent.right
@@ -169,7 +169,7 @@ Window {
 
                 anchors{
                     top: unitsSectionHeading.bottom
-                    topMargin: 10
+                    topMargin: 20
                     left: parent.left
                     leftMargin: 20
                     right: parent.right
@@ -209,6 +209,22 @@ Window {
                 right: parent.right
             }
             color: mainWindow.backgroundColor
+
+            Rectangle{
+                width: parent.width/2.5
+                height: parent.height/2.5
+                anchors.centerIn: parent
+
+                Button{
+                    id: getWeatherButton
+                    anchors.fill: parent
+                    text: qsTr("Get Weather Data")
+                    font {
+                        family: mainWindow.appFont
+                        pixelSize: 20
+                    }
+                }
+            }
         }
     }
 }
