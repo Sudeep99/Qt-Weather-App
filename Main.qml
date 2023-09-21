@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import weatherClass 1.0
 
 Window {
 
@@ -21,6 +22,8 @@ Window {
     visible: true
     title: qsTr("Weather App")
     color: mainWindow.backgroundColor
+
+    FetchWeather{id:weatherClass}
 
     Rectangle{
         id: topRect
@@ -101,7 +104,7 @@ Window {
                     id: latitudeField
                     width: parent.width * 0.2
                     placeholderText: "Enter latitude"
-                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|[1-8]\d|90)(?:\.\d{1,2})?)?$/ } // latitude can only be between -90 to 90 with 2 decimal numbers
+                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|[1-8]\d|90)(?:\.\d{1,4})?)?$/ } // latitude can only be between -90 to 90 with 4 decimal numbers
                     font.family: mainWindow.appFont
                     font.pointSize: 12
                     color: mainWindow.fontColor
@@ -132,7 +135,7 @@ Window {
                     id: longitudeField
                     width: parent.width * 0.2
                     placeholderText: "Enter longitude"
-                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|1[0-7]\d|180)(?:\.\d{1,2})?)?$/ } // longitude can only be between -180 to 180 with 2 decimal numbers
+                    validator: RegularExpressionValidator{ regularExpression: /^(?:-?(?:\d|[1-8]\d|180)(?:\.\d{1,4})?)?$/ } // longitude can only be between -180 to 180 with 4 decimal numbers
                     font.family: mainWindow.appFont
                     font.pointSize: 12
                     color: mainWindow.fontColor
@@ -222,6 +225,10 @@ Window {
                     font {
                         family: mainWindow.appFont
                         pixelSize: 20
+                    }
+                    onClicked: {
+                        var units = standardUnitsRadioButton.checked?"standard":metricUnitsRadioButton.checked?"metric":"imperial"
+                        weatherClass.fetchWeather(latitudeField.text,longitudeField.text,units)
                     }
                 }
             }
